@@ -17,6 +17,8 @@ module Fdoc
     private
 
     def check_response(verb, request_params)
+      return if Fdoc.skip_unless_scaffold? && !Fdoc.scaffold_mode?
+
       successful = Fdoc.decide_success(response_params, real_response.status)
       Service.verify!(verb, path, parsed_request_params(request_params), response_params,
                       real_response.status, successful)

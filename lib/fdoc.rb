@@ -15,6 +15,14 @@ module Fdoc
     @service_path || DEFAULT_SERVICE_PATH
   end
 
+  def self.skip_unless_scaffold=(value)
+    @skip_unless_scaffold = value
+  end
+
+  def self.skip_unless_scaffold?
+    @skip_unless_scaffold || false
+  end
+
   def self.decide_success_with(&block)
     @success_block = block
   end

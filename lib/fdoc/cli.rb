@@ -24,6 +24,7 @@ module Fdoc
     method_option :url_base_path, :aliases => "-u", :desc => "URL base path"
     method_option :format, :aliases => "-f", :desc => "Format in html or markdown, defaults to html", :default => "html"
     method_option :templates, :aliases => "-t", :desc => "Template overrides path"
+
     def convert(fdoc_path)
       say_status nil, "Converting fdoc to #{options[:format]}"
 
@@ -55,7 +56,7 @@ module Fdoc
 
             service_presenter.endpoints.each do |endpoint_prefix_group|
               endpoint_prefix_group.each do |endpoint|
-                create_file(endpoint.url, endpoint.to_html)
+                create_file(endpoint.file_path, endpoint.to_html)
               end
             end
           end

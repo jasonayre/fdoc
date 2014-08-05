@@ -8,6 +8,10 @@ class Fdoc::EndpointPresenter < Fdoc::BasePresenter
     @endpoint_presenter = self
   end
 
+  def file_path(extension = ".html")
+    '%s%s-%s%s' % [ options[:prefix], endpoint.path, endpoint.verb, extension ]
+  end
+
   def to_html
     render_erb('endpoint.html.erb')
   end
@@ -17,7 +21,7 @@ class Fdoc::EndpointPresenter < Fdoc::BasePresenter
   end
 
   def url(extension = ".html")
-    '%s%s-%s%s' % [ options[:prefix], endpoint.path, endpoint.verb, extension ]
+    '%s%s-%s%s' % [  options[:url_base_path], endpoint.path, endpoint.verb, extension ]
   end
 
   def title

@@ -42,6 +42,10 @@ class Fdoc::Endpoint
     end
   end
 
+  def url(extension = ".html")
+    '%s%s-%s%s' % [ options[:url_base_path], endpoint.path, endpoint.verb, extension ]
+  end
+
   def verb
     @verb ||= endpoint_path.match(/([A-Z]*)\.fdoc$/)[1]
   end
